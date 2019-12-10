@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components/native';
+
 export const ItemWrapper = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-between;
@@ -9,7 +10,6 @@ export const ItemWrapper = styled.TouchableOpacity`
 export const ItemText = styled.Text`
   color: black;
   font-size: 16px;
-  max-width: 80%;
   flex: 2;
 `;
 

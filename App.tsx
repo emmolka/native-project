@@ -1,10 +1,9 @@
-import React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import theme from "./styles/theme";
-import ComicsList from "./src/containers/comics-list";
-import ComicsDetails from "./src/containers/comics-detail";
-
-import { Router, Scene } from "react-native-router-flux";
+import React from 'react';
+import styled, { ThemeProvider } from 'styled-components/native';
+import theme from './styles/theme';
+import ComicsList from './src/containers/comics-list';
+import ComicsDetails from './src/containers/comics-detail';
+import { Router, Scene } from 'react-native-router-flux';
 
 const Routes = () => (
   <Router>

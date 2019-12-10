@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { SafeAreaView } from "react-native";
+import styled from 'styled-components/native';
+import { SafeAreaView } from 'react-native';
 
 export const MainWrapper = styled.View`
   flex: 1;
