@@ -1,5 +1,5 @@
 import styled from "styled-components";
-export const ItemWrapper = styled.View`
+export const ItemWrapper = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-between;
   padding: 10px 30px;

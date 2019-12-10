@@ -9,10 +9,6 @@ export const StyledSafeAreaView = styled(SafeAreaView)`
   flex: 1;
 `;
 
-export const HelloText = styled.Text`
-  color: #f0f;
-`;
-
 export const StyledFlatList = styled.FlatList`
   flex: 1;
 `;
