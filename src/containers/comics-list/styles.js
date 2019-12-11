@@ -8,3 +8,9 @@ export const StyledSafeAreaView = styled(SafeAreaView)`
 `;
 
 export const StyledFlatList = styled.FlatList`flex: 1;`;
+
+export const StyledActivityIndicator = styled.ActivityIndicator`
+	flex: 1;
+	height: undefined;
+	width: undefined;
+`;

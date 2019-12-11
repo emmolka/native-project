@@ -3,7 +3,7 @@ import { Text, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { MainWrapper } from './styles';
 import axios from 'axios';
 import ComicsItem from '../../components/comics-item';
-import { StyledFlatList, StyledSafeAreaView } from './styles';
+import { StyledFlatList, StyledSafeAreaView, StyledActivityIndicator } from './styles';
 
 const fetchComics = async (setItems, setDataLoaded) => {
 	try {
@@ -33,7 +33,7 @@ const ComicsList = () => {
 
 	return (
 		<MainWrapper>
-			{dataLoaded ? null : <ActivityIndicator size="large" />}
+			{dataLoaded ? null : <StyledActivityIndicator size="large" />}
 			<StyledSafeAreaView>
 				<StyledFlatList
 					data={items}
