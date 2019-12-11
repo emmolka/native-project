@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Text, SafeAreaView, FlatList, ActivityIndicator } from 'react-native';
 import { MainWrapper } from './styles';
 import axios from 'axios';
 import ComicsItem from '../../components/comics-item';
-import { StyledFlatList, StyledSafeAreaView, StyledActivityIndicator } from './styles';
+import {
+	StyledFlatList,
+	StyledSafeAreaView,
+	StyledActivityIndicator,
+	StyledItemsSeparator,
+	ErrorMessage,
+	ErrorWrapper
+} from './styles';
 
-const fetchComics = async (setItems, setDataLoaded) => {
+const fetchComics = async (setItems, setIsLoading, setError) => {
 	try {
+		setIsLoading(true);
 		const { data: { num: lastNumber } } = await axios.get('https://xkcd.com/info.0.json');
 
 		const arr = [];
@@ -16,29 +23,38 @@ const fetchComics = async (setItems, setDataLoaded) => {
 		}
 
 		const remainingData = await Promise.all(arr.map((item) => axios.get(item)));
-
 		setItems([ ...remainingData.map((element) => element.data) ]);
-		setDataLoaded(true);
 	} catch (e) {
 		console.log(e.message);
+		setError(true);
+	} finally {
+		setIsLoading(false);
 	}
 };
 
 const ComicsList = () => {
 	const [ items, setItems ] = useState([]);
-	const [ dataLoaded, setDataLoaded ] = useState(false);
+	const [ isLoading, setIsLoading ] = useState(false);
+	const [ error, setError ] = useState(false);
 	useEffect(() => {
-		fetchComics(setItems, setDataLoaded);
+		fetchComics(setItems, setIsLoading, setError);
 	}, []);
 
 	return (
 		<MainWrapper>
-			{dataLoaded ? null : <StyledActivityIndicator size="large" />}
+			{isLoading && <StyledActivityIndicator size="large" />}
+			{!isLoading &&
+			error && (
+				<ErrorWrapper>
+					<ErrorMessage>Something went wrong try again later!</ErrorMessage>
+				</ErrorWrapper>
+			)}
 			<StyledSafeAreaView>
 				<StyledFlatList
 					data={items}
 					renderItem={({ item }) => <ComicsItem text={item.title} image={item.img} />}
 					keyExtractor={(item) => item.num}
+					ItemSeparatorComponent={() => <StyledItemsSeparator />}
 				/>
 			</StyledSafeAreaView>
 		</MainWrapper>
