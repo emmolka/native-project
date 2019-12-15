@@ -43,7 +43,6 @@ const ComicsList = () => {
           data={items}
           renderItem={({ item }: { item: ComicsInterface }) => <ComicsItem text={item.title} image={item.img} />}
           keyExtractor={(item: ComicsInterface) => item.num}
-          onEndReached={() => console.log('Mati')}
         />
       </StyledSafeAreaView>
     </MainWrapper>
